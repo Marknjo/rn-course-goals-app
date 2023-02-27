@@ -8,6 +8,7 @@ export default function App() {
         <Button
           title='Add Goal'
           accessibilityLabel='Click to add course goal'
+          color='#1bcacd'
         />
       </View>
       <View style={styles.goalsContainer}>
@@ -39,7 +40,8 @@ const styles = StyleSheet.create({
     borderColor: "#cccccc",
     width: "70%",
     marginRight: 8,
-    padding: 8,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
   },
 
   goalsContainer: {
