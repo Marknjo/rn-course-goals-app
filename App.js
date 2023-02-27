@@ -1,22 +1,16 @@
-import { useId, useState } from "react";
-import {
-  Button,
-  FlatList,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { useState } from "react";
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import GoalInput from "./components/GoalInput";
 
 export default function App() {
-  const [enteredGoalText, setEnteredGoalText] = useState("");
+  // const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
 
-  function goalsInputHandler(enteredText) {
-    setEnteredGoalText(enteredText);
-  }
+  // function goalsInputHandler(enteredText) {
+  //   setEnteredGoalText(enteredText);
+  // }
 
-  function addGoalsHandler() {
+  function addGoalsHandler(enteredGoalText) {
     setCourseGoals((prevGoals) => [
       {
         text: enteredGoalText.trim(),
@@ -24,25 +18,12 @@ export default function App() {
       },
       ...prevGoals,
     ]);
-    setEnteredGoalText("");
   }
 
   return (
     <View style={styles.appContainer}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder='Your Course Goal'
-          onChangeText={goalsInputHandler}
-          value={enteredGoalText}
-        />
-        <Button
-          title='Add Goal'
-          accessibilityLabel='Click to add course goal'
-          color='#1bcacd'
-          onPress={addGoalsHandler}
-        />
-      </View>
+      <GoalInput onAddGoal={addGoalsHandler} />
+
       <View style={styles.goalsContainer}>
         <Text style={styles.goalsListTitle}>List of Goals</Text>
 
@@ -69,25 +50,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
-  },
-
-  inputContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc",
-  },
-
-  textInput: {
-    borderWidth: 1,
-    borderColor: "#cccccc",
-    width: "70%",
-    marginRight: 8,
-    paddingVertical: 4,
-    paddingHorizontal: 8,
   },
 
   goalsContainer: {
