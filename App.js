@@ -1,14 +1,10 @@
 import { useState } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import GoalInput from "./components/GoalInput";
+import GoalItem from "./components/GoalItem";
 
 export default function App() {
-  // const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
-
-  // function goalsInputHandler(enteredText) {
-  //   setEnteredGoalText(enteredText);
-  // }
 
   function addGoalsHandler(enteredGoalText) {
     setCourseGoals((prevGoals) => [
@@ -29,13 +25,7 @@ export default function App() {
 
         <FlatList
           data={courseGoals}
-          renderItem={(itemData) => {
-            return (
-              <View style={styles.goalsItem}>
-                <Text style={styles.goalsText}>{itemData.item.text}</Text>
-              </View>
-            );
-          }}
+          renderItem={(itemData) => <GoalItem goal={itemData.item.text} />}
           keyExtractor={(item) => `${item.id}`}
           style={styles.goalsItemsContainer}
           alwaysBounceVertical={true}
@@ -70,16 +60,5 @@ const styles = StyleSheet.create({
   goalsItemsContainer: {
     paddingVertical: 10,
     paddingHorizontal: 20,
-  },
-
-  goalsItem: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 4,
-    backgroundColor: "#5e0acc",
-  },
-
-  goalsText: {
-    color: "white",
   },
 });
